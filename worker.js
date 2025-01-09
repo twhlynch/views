@@ -43,7 +43,7 @@ async function handleRequest(request, env, ctx) {
 		const { url } = await request.json();
 		const urlKey = new URL(url).hostname + new URL(url).pathname;
 
-		const kv = env.views;
+		const kv = env.VIEWS;
 		let value = await kv.get(urlKey) || "0";
 		value = (parseInt(value) + 1).toString();
 		await kv.put(urlKey, value);
