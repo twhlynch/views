@@ -2,7 +2,7 @@ addEventListener('fetch', event => {
 	event.respondWith(handleRequest(event.request))
 })
 
-async function handleRequest(request) {
+async function handleRequest(request, env, ctx) {
 
 	const DOMAINS = [
 		"twhlynch.me",
