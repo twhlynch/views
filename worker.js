@@ -40,12 +40,13 @@ async function handleRequest(request) {
 	}
 
 	try {
-		const { content } = await request.json();
+		const { url } = await request.json();
+		const urlKey = new URL(url).hostname + new URL(url).pathname;
 
 		const kv = env.views;
-		let value = await kv.get(content.url) || "0";
+		let value = await kv.get(urlKey) || "0";
 		value = (parseInt(value) + 1).toString();
-		await kv.put(request.url, value);
+		await kv.put(urlKey, value);
 
 		return new Response(value, { headers, status: 200 });
 	} catch (error) {
