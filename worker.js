@@ -40,12 +40,15 @@ async function handleRequest(request) {
 	}
 
 	try {
-		const { url } = await request.json();
+		const { url, ignore } = await request.json();
 		const urlKey = new URL(url).hostname + new URL(url).pathname;
 
 		let value = await VIEWS.get(urlKey) || "0";
-		value = (parseInt(value) + 1).toString();
-		await VIEWS.put(urlKey, value);
+
+		if (!ignore) {
+			value = (parseInt(value) + 1).toString();
+			await VIEWS.put(urlKey, value);
+		}
 
 		return new Response(value, { headers, status: 200 });
 	} catch (error) {
