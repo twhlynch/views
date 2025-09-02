@@ -3,5 +3,5 @@ main = "./worker.js"
 compatibility_date="2023-05-18"
 compatibility_flags = [ "nodejs_compat" ]
 kv_namespaces = [
-  { binding = "VIEWS", id = "9ad1d063ed234ad0ae223a63ece65921" }
+	{ binding = "VIEWS", id = "9ad1d063ed234ad0ae223a63ece65921" }
 ]
