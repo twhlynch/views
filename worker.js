@@ -40,7 +40,8 @@ async function handleRequest(request) {
 
 	try {
 		const { url, ignore } = await request.json();
-		const urlKey = new URL(url).hostname + new URL(url).pathname;
+		let urlKey = new URL(url).hostname + new URL(url).pathname;
+		if (urlKey.endsWith("/")) urlKey = urlKey.slice(0, -1);
 
 		let value = (await VIEWS.get(urlKey)) || "0";
 
